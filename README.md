@@ -14,3 +14,13 @@ Optional: `OPENALEX_API_KEY` (free, https://help.openalex.org/api/authentication
 back-fills abstracts missing from Crossref. Without it only Crossref abstracts are used,
 so Isis and Osiris (no abstracts in Crossref) are matched on titles, page counts and
 themed-cluster heuristics only. Treat tiers as triage, not a final verdict.
+
+## Watchlist of key scholars
+
+```
+python3 key_authors.py   # needs output/raw_records.json; writes output/key_authors.md
+```
+
+Lists 40 scholars with their topics, how they frame vernacular/popular/everyday science
+(tagged `[data]` when taken from an abstract in the four journals, `[background]` when
+summarised from general knowledge and to be verified), and their articles/reviews found by name match.
