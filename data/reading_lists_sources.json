@@ -1,0 +1,492 @@
+{
+ "fetched": "2026-10-02",
+ "daston": {
+  "page": "https://www.mpiwg-berlin.mpg.de/research/departments/dept-daston",
+  "wg_books_page": "https://www.mpiwg-berlin.mpg.de/page/dept-daston-working-group-books",
+  "department_title": "Ideals & Practices of Rationality (1995-2019)",
+  "note_count": "The department page says 22 Working Group volumes; the Working Group Books page lists 20 entries.",
+  "projects": [
+   {
+    "title": "History of Scientific Objects",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Da_Hist_Scientific_Obj"
+   },
+   {
+    "title": "Historia: Explorations in the History of Early Modern Empiricism",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Da_Historia"
+   },
+   {
+    "title": "Between the Natural and the Human Sciences",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Da_Natural_Human_sciences"
+   },
+   {
+    "title": "The Scientific Personae",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Da_Scientific_personae"
+   },
+   {
+    "title": "The History of Scientific Observation",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Da_observation"
+   },
+   {
+    "title": "The Sciences of the Archive",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Daston-SciencesOfTheArchives"
+   },
+   {
+    "title": "Science in Circulation: The Exchange of Knowledge, Ninth–Seventeenth Centuries",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_Science_in_Circulation"
+   },
+   {
+    "title": "Gender Studies of Science",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_gender_science"
+   },
+   {
+    "title": "Cold War Rationality",
+    "url": "https://www.mpiwg-berlin.mpg.de/research/projects/DeptII_ColdWarRationality"
+   }
+  ],
+  "working_group_books": [
+   {
+    "year": 2019,
+    "citation": "Bittel, C., Leong, E., & Oertzen, C.v. (eds.). 2019. Working with Paper: Gendered Practices in the History of Knowledge. Pittsburgh: University of Pittsburgh Press."
+   },
+   {
+    "year": 2019,
+    "citation": "Smith, P.H. (ed.). (2019). Entangled Itineraries: Materials, Practices, and Knowledges across Eurasia. Pittsburgh: University of Pittsburgh Press."
+   },
+   {
+    "year": 2018,
+    "citation": "Camprubí, L., & Lehmann, P.N. (Eds.). (2018). \"Experiencing the Global Environment [Special Issue].\" Studies in History and Philosophy of Science . Part A, 70."
+   },
+   {
+    "year": 2017,
+    "citation": "Aronova, E., Oertzen, C.v., & Sepkoski, D. (Eds.). (2017). \"Data Histories \"[Special Issue]. Osiris , 32."
+   },
+   {
+    "year": 2017,
+    "citation": "Daston, L. (Ed.). (2017). Science in the Archives: Pasts, Presents, Futures. Chicago: The University of Chicago Press."
+   },
+   {
+    "year": 2017,
+    "citation": "Feldhay, R., & Ragep, F. J. (Eds.). (2017). Before Copernicus: The Cultures and Contexts of Scientific Learning in the Fifteenth Century. Montreal: McGill-Queen’s University Press."
+   },
+   {
+    "year": 2017,
+    "citation": "Leong, E., & Rankin, A. (Eds.). (2017). Testing Drugs and Trying Cures [Special Issue]. Bulletin of the History of Medicine , 91(2). doi:10.1353/bhm.2017.0023."
+   },
+   {
+    "year": 2016,
+    "citation": "Mitman, G., & Wilder, K. (Eds.). (2016). Documenting the World: Film, Photography, and the Scientific Record. Chicago: The University of Chicago Press."
+   },
+   {
+    "year": 2016,
+    "citation": "Most, G. W. (2016). Canonical Texts and Scholarly Practices: A Global Comparative Approach. Cambridge: Cambridge University Press."
+   },
+   {
+    "year": 2015,
+    "citation": "Vidal, F., & Dias, N. (Eds.). (2015). Endangerment, biodiversity and Culture. New York: Routledge."
+   },
+   {
+    "year": 2013,
+    "citation": "Daston, L. (Ed.). (2013). How Reason Almost Lost its Mind: The Strange Career of Cold War Rationality . Chicago: Chicago University Press."
+   },
+   {
+    "year": 2013,
+    "citation": "Oertzen, C. v., Rentetzi, M., & Watkins Siegel, E. (Eds.). (2013). \"Beyond the Academy: Histories of Gender and Knowledge\" [Special Issue]. Centaurus , 55(2)."
+   },
+   {
+    "year": 2011,
+    "citation": "Daston, L., & Lunbeck, E. (Eds.). (2011). Histories of Scientific Observation. Chicago: University of Chicago Press."
+   },
+   {
+    "year": 2008,
+    "citation": "Daston, L., & Stolleis, M. (Eds.). (2008). Natural Law and Laws of Nature in Early Modern Europe: Jurisprudence, Theology, Moral, and Natural Philosophy. Farnham [u.a.]: Ashgate."
+   },
+   {
+    "year": 2007,
+    "citation": "Kleeberg, B., & Vidal, F. (Eds.). (2007). \"Believing Nature, Knowing God\" [Special Issue]. Special issue of Science in Context 20 (3)."
+   },
+   {
+    "year": 2007,
+    "citation": "Daston, L., & Mitman, G. (Eds.). (2005). Thinking with Animals: New Perspectives on Anthropomorphism. New York: Columbia University Press."
+   },
+   {
+    "year": 2005,
+    "citation": "Pomata, G., & Siraisi, N. G. (Eds.). (2005). Historia: Empiricism and Erudition in Early Modern Europe . Cambridge, Mass. [u.a.]."
+   },
+   {
+    "year": 2004,
+    "citation": "Daston, L. (Ed.). (2004). Things that Talk: Object Lessons from Art and Science. New York: Zone Books."
+   },
+   {
+    "year": 2004,
+    "citation": "Daston, L., & Vidal, F. (Eds.). (2004). The Moral Authority of Nature. Chicago: Chicago University Press."
+   },
+   {
+    "year": 2000,
+    "citation": "Daston, L. (Ed.). (2000). Biographies of Scientific Objects. Chicago: Chicago University Press."
+   }
+  ]
+ },
+ "sftp": {
+  "site": "https://scienceforthepeople.org/",
+  "resources": "https://scienceforthepeople.org/resources/",
+  "resource_items": [
+   {
+    "title": "Science for the People: Documents from America's Movement of Radical Scientists (open-access book)",
+    "url": "https://www.umasspress.com/9781625343185/science-for-the-people/",
+    "extra": "https://umpressopen.library.umass.edu/read/read-online/section/194d69e1-fb59-45f6-bba0-6800e8f92b91"
+   },
+   {
+    "title": "SftP Principles of Unity Pamphlet (PDF)",
+    "url": "https://scienceforthepeople.org/wp-content/uploads/2024/08/pamphlet_new8-11-24.pdf"
+   },
+   {
+    "title": "2025 Stand Up for Science Pamphlet: A Radical Perspective (PDF)",
+    "url": "https://scienceforthepeople.org/wp-content/uploads/2025/04/sftp_su4s_pamphlet.pdf"
+   },
+   {
+    "title": "2018 March for Science: Resources to Promote Science for the People (incl. the 'Dual Nature of Science' pamphlet)",
+    "url": "https://scienceforthepeople.org/index.php/2018/04/11/m4s-resources/"
+   },
+   {
+    "title": "Political Education Materials (collection of SftP / radical science history, theory, commentary)",
+    "url": "https://linktr.ee/sftpres"
+   },
+   {
+    "title": "2014 Science for the People Conference website (UMass Amherst; historical material)",
+    "url": "http://science-for-the-people.org/"
+   }
+  ],
+  "issues": [
+   [
+    "Vol. 27, no. 2: The Political Economy of Science",
+    "https://magazine.scienceforthepeople.org/political-economy/"
+   ],
+   [
+    "Vol. 27, no. 1: Rethinking Science Communication",
+    "https://magazine.scienceforthepeople.org/rethinking-scicom/"
+   ],
+   [
+    "Vol. 26, no. 3: Palestine",
+    "https://magazine.scienceforthepeople.org/palestine/"
+   ],
+   [
+    "Vol. 26, no. 2: Ways of Knowing",
+    "https://magazine.scienceforthepeople.org/ways-of-knowing/"
+   ],
+   [
+    "Vol. 26, no. 1: Beyond Binaries",
+    "https://magazine.scienceforthepeople.org/gender-beyond-binaries/"
+   ],
+   [
+    "Vol. 25, no. 3: Killing in the Name Of",
+    "https://magazine.scienceforthepeople.org/volume-25-number-3-killing-in-the-name-of/"
+   ],
+   [
+    "Vol. 25, no. 2: Bleeding Earth",
+    "https://magazine.scienceforthepeople.org/volume-25-number-2-bleeding-earth/"
+   ],
+   [
+    "Vol. 25, no. 1: The Soil and the Worker",
+    "https://magazine.scienceforthepeople.org/volume-25-number-1-the-soil-and-the-worker/"
+   ],
+   [
+    "Vol. 24, no. 3: Cooperation",
+    "https://magazine.scienceforthepeople.org/volume-24-number-3-cooperation/"
+   ],
+   [
+    "Vol. 24, no. 2: Don't Be Evil",
+    "https://magazine.scienceforthepeople.org/volume-24-number-2-dont-be-evil/"
+   ],
+   [
+    "Vol. 24, no. 1: Racial Capitalism",
+    "https://magazine.scienceforthepeople.org/volume-24-number-1-racial-capitalism/"
+   ],
+   [
+    "Vol. 23, no. 3: Bio-Politics",
+    "https://magazine.scienceforthepeople.org/volume-23-no-3-bio-politics/"
+   ],
+   [
+    "Vol. 23, no. 2: A People's Green New Deal",
+    "https://magazine.scienceforthepeople.org/volume-23-number-2-a-peoples-green-new-deal/"
+   ],
+   [
+    "Vol. 23, no. 1: Science Under Occupation",
+    "https://magazine.scienceforthepeople.org/vol23-1/"
+   ],
+   [
+    "Vol. 22, no. 2: Envisioning and Enacting the Science We Need",
+    "https://magazine.scienceforthepeople.org/vol22-2/"
+   ],
+   [
+    "Vol. 22, no. 1: The Return of Radical Science",
+    "https://magazine.scienceforthepeople.org/vol22-1/"
+   ]
+  ],
+  "specials": [
+   [
+    "Organize the Lab (2022)",
+    "https://magazine.scienceforthepeople.org/organize-the-lab/"
+   ],
+   [
+    "In Memoriam: Richard Lewontin (1929-2021)",
+    "https://magazine.scienceforthepeople.org/lewontin-special-collection/"
+   ],
+   [
+    "Rereading 'China: Science Walks on Two Legs' (2021)",
+    "https://magazine.scienceforthepeople.org/rereading-china-2021-special/"
+   ],
+   [
+    "Geoengineering Collection (2018)",
+    "https://magazine.scienceforthepeople.org/geoengineering-special-issue/"
+   ]
+  ],
+  "articles": {
+   "Vol. 27, no. 1: Rethinking Science Communication": [
+    {
+     "title": "Fiction Can Improve Communication Between Scientists and Society",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/fiction-can-improve-communication/"
+    },
+    {
+     "title": "Re/doing Sciences in the Sundarbans Delta",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/re-doing-sciences-in-the-sundarbans-delta/"
+    },
+    {
+     "title": "Blending Right In",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/blending-right-in/"
+    },
+    {
+     "title": "The Role of Indigenous Women",
+     "url": "https://magazine.scienceforthepeople.org/online/the-role-of-indigenous-women/"
+    },
+    {
+     "title": "The Damaging Impacts of Assuming Relationship Norms",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/assuming-relationship-norms/"
+    },
+    {
+     "title": "Art±Bio Science Murals",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/art%c2%b1bio-collaborative/"
+    },
+    {
+     "title": "Us and Them",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/us-and-them/"
+    },
+    {
+     "title": "Communicating Knowledge Otherwise",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/communicating-knowledge-otherwise/"
+    },
+    {
+     "title": "Abandoning the Deficit Model",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/abandoning-the-deficit-model/"
+    },
+    {
+     "title": "A Call to Action",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/a-call-to-action/"
+    },
+    {
+     "title": "Communicating Scientific Climate Knowledge",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/communicating-scientific-climate-knowledge/"
+    },
+    {
+     "title": "SftP Looks at Popular Science Magazines",
+     "url": "https://magazine.scienceforthepeople.org/vol27-1-rethinking-scicomm/sftp-looks-at-popular-science-magazines/"
+    },
+    {
+     "title": "The Magazine",
+     "url": "https://magazine.scienceforthepeople.org/"
+    }
+   ],
+   "Vol. 26, no. 2: Ways of Knowing": [
+    {
+     "title": "Breaking the Binary in Ecology and Beyond",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/breaking-the-binary-in-ecology-and-beyond/"
+    },
+    {
+     "title": "Making Space and Knowing Nature Through Anti-Imperialist Struggle in the Philippines",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/making-space-knowing-nature-anti-imperialist-struggle-philippines/"
+    },
+    {
+     "title": "Sowing Ancestral Futures",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/sowing-ancestral-futures/"
+    },
+    {
+     "title": "The Malitan: Preserving Seeds, A Way of Life and Tradition",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/the-malitan-preserving-seeds-a-way-of-life-and-tradition/"
+    },
+    {
+     "title": "Afrofuturism Unveiled",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/afrofuturism-unveiled/"
+    },
+    {
+     "title": "Akwesasne and the History of Hydropower",
+     "url": "https://magazine.scienceforthepeople.org/online/akwesasne-and-the-history-of-hydropower/"
+    },
+    {
+     "title": "Reclaiming Epistemic Diversity",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/reclaiming-epistemic-diversity-corporate-capture/"
+    },
+    {
+     "title": "On Kinship: Indigenous Knowledge(s) & Western Knowledge",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/on-kinship-indigenous-knowledges-western-knowledge/"
+    },
+    {
+     "title": "Old Contradictions and New Possibilities in Marxist and Indigenous Praxis",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/historical-marxism-indigenous-praxis/"
+    },
+    {
+     "title": "Prophets Facing Backward: Postmodern Critiques of Science and Hindu Nationalism in India",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/prophets-facing-backward/"
+    },
+    {
+     "title": "Chinese Medicine: A Framework for Healing and Liberation",
+     "url": "https://magazine.scienceforthepeople.org/vol26-2-ways-of-knowing/chinese-medicine-a-framework-for-healing-and-liberation/"
+    },
+    {
+     "title": "The Magazine",
+     "url": "https://magazine.scienceforthepeople.org/"
+    }
+   ],
+   "Special: Rereading 'China: Science Walks on Two Legs' (2021)": [
+    {
+     "title": "Introduction",
+     "url": "https://magazine.scienceforthepeople.org/rereading-china/introduction/"
+    },
+    {
+     "title": "Commentary on Science for the People, China: Science Walks on Two Legs",
+     "url": "https://magazine.scienceforthepeople.org/rereading-china/commentary/"
+    },
+    {
+     "title": "Reflections on the 1973 Trip",
+     "url": "https://magazine.scienceforthepeople.org/rereading-china/reflections-1973/"
+    },
+    {
+     "title": "Reflections on the 1978 Trip",
+     "url": "https://magazine.scienceforthepeople.org/rereading-china/reflections-1978/"
+    },
+    {
+     "title": "Why the 996.ICU Movement Must Not Be Forgotten in the United States",
+     "url": "https://magazine.scienceforthepeople.org/rereading-china/996icu-not-be-forgotten/"
+    },
+    {
+     "title": "Biographical Notes on the 1973 Delegates",
+     "url": "https://magazine.scienceforthepeople.org/rereading-china/biographical-notes-1973/"
+    },
+    {
+     "title": "The Magazine",
+     "url": "https://magazine.scienceforthepeople.org/"
+    }
+   ],
+   "Vol. 22, no. 2: Envisioning and Enacting the Science We Need": [
+    {
+     "title": "For a People-Centered Science: A Call to Action",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/community-science-people-centered-call-action/"
+    },
+    {
+     "title": "The Imperial Machine Behind the Cholera Epidemic in Yemen",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/the-imperial-machine-behind-the-cholera-epidemic-in-yemen/"
+    },
+    {
+     "title": "A Guide to Action for Advocates of the Green New Deal",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/ecological-society-guide-action-advocates-green-new-deal/"
+    },
+    {
+     "title": "Pubs, Bathtubs, and Labcoats",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/pubs-bathtubs-labcoats-radical-science/"
+    },
+    {
+     "title": "Red Wine, A Fraying Order, and the Science Journalism We Need",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/the-science-journalism-we-need/"
+    },
+    {
+     "title": "From Pro-Choice Politics to Reproductive Justice",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/pro-choice-politics-to-reproductive-justice-abortion/"
+    },
+    {
+     "title": "Science and Technology Beyond Sin or Savior",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/science-technology-beyond-sin-savior-capitalism/"
+    },
+    {
+     "title": "Practicing STEM Capitxl with an Out-of-School-Time Youth Program",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/practicing-stem-capitxl-with-an-out-of-school-time-youth-program/"
+    },
+    {
+     "title": "Strong Animals: Humility in Science",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/strong-animals-introducing-circle-holders-humility/"
+    },
+    {
+     "title": "The Lucas Plan – An Idea Whose Time has Come?",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/the-new-lucas-plan/"
+    },
+    {
+     "title": "Psychology and Neuroscience Beyond the Binary",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/psychology-and-neuroscience-beyond-the-binary/"
+    },
+    {
+     "title": "Mni Wiconi, Water is Life: Review of AWAKE, A Dream from Standing Rock",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/water-is-life-review-awake-standing-rock/"
+    },
+    {
+     "title": "How I Became an Occasional Cartographer",
+     "url": "https://magazine.scienceforthepeople.org/vol22-2/how-i-became-an-occasional-cartographer/"
+    },
+    {
+     "title": "The Magazine",
+     "url": "https://magazine.scienceforthepeople.org/"
+    }
+   ]
+  },
+  "archive": {
+   "index": "https://archive.scienceforthepeople.org/volumes/",
+   "volumes": [
+    [
+     "Volume 2 (1970)",
+     "https://archive.scienceforthepeople.org/vol-2/"
+    ],
+    [
+     "Volume 3 (1971)",
+     "https://archive.scienceforthepeople.org/vol-3/"
+    ],
+    [
+     "Volume 4 (1972)",
+     "https://archive.scienceforthepeople.org/vol-4/"
+    ],
+    [
+     "Volume 5 (1973)",
+     "https://archive.scienceforthepeople.org/vol-5/"
+    ],
+    [
+     "Volume 6 (1974)",
+     "https://archive.scienceforthepeople.org/vol-6/"
+    ],
+    [
+     "Volume 7 (1975)",
+     "https://archive.scienceforthepeople.org/vol-7/"
+    ],
+    [
+     "Volume 8 (1976)",
+     "https://archive.scienceforthepeople.org/vol-8/"
+    ],
+    [
+     "Volume 9 (1977)",
+     "https://archive.scienceforthepeople.org/vol-9/"
+    ],
+    [
+     "Volume 10 (1978)",
+     "https://archive.scienceforthepeople.org/vol-10/"
+    ],
+    [
+     "Volume 11 (1979)",
+     "https://archive.scienceforthepeople.org/vol-11/"
+    ],
+    [
+     "Volume 12 (1980)",
+     "https://archive.scienceforthepeople.org/vol-12/"
+    ],
+    [
+     "Volume 13 (1981)",
+     "https://archive.scienceforthepeople.org/vol-13/"
+    ]
+   ],
+   "note": "The archive site lists Volumes 2-13 (1970-1981); the magazine ran 1969-1989 (Vol. 1-21). Original PDFs: http://science-for-the-people.org/"
+  }
+ }
+}
