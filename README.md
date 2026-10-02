@@ -1,1 +1,16 @@
 # Vernacular-Science
+
+Searches Isis, Osiris, History of Science and BJHS (1980–2026) for review-type
+articles on vernacular / popular / everyday science and technology.
+
+```
+pip install requests
+python3 search_reviews.py            # fetch from Crossref, write output/results.{md,json,csv}
+python3 search_reviews.py --reuse    # re-score cached output/raw_records.json (no refetch)
+python3 search_reviews.py --selftest
+```
+
+Optional: `OPENALEX_API_KEY` (free, https://help.openalex.org/api/authentication/)
+back-fills abstracts missing from Crossref. Without it only Crossref abstracts are used,
+so Isis and Osiris (no abstracts in Crossref) are matched on titles, page counts and
+themed-cluster heuristics only. Treat tiers as triage, not a final verdict.

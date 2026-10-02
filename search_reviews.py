@@ -11,6 +11,7 @@ Usage:  python3 search_reviews.py [--out DIR] [--from 1980] [--until 2026]
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 import time
@@ -31,19 +32,20 @@ JOURNALS = {
 
 # (regex, weight). Matched case-insensitively on title (x3) and abstract (x1).
 TOPIC_TERMS = [
-    (r"vernacular", 3),
+    (r"\bvernaculars?\b", 3),
     (r"popular(?:i[sz]ation|i[sz]ing|i[sz]ers?)?\s+(?:science|scientific|knowledge|technolog|medicine|astronomy|natural|culture)", 3),
     (r"popular(?:i[sz]ation|i[sz]ing|i[sz]ers?)", 3),
     (r"popular science", 3),
     (r"science (?:and|for|in) (?:the )?(?:public|people|popular|print|everyday)", 3),
     (r"public(?:s)? (?:science|understanding|engagement|knowledge)", 2),
-    (r"everyday (?:science|technolog|knowledge|life|practice|object|material)", 3),
+    (r"everyday (?:science|technolog|knowledge|practice|object|material|world)", 3),
+    (r"everyday life", 1),
     (r"ordinary (?:people|science|technolog)", 2),
     (r"lay (?:knowledge|science|audience|expertise|reader|public)", 2),
-    (r"amateur", 2),
+    (r"\bamateurs?\b", 2),
     (r"artisan|craft(?:s|sm[ae]n)?\b|practitioner knowledge|tacit knowledge|vulgari[sz]", 2),
     (r"mechanics'? institute|science lecture|public lecture|almanac|chapbook|cheap print|periodical", 1),
-    (r"domestic (?:science|technolog)|household|folk|popular culture|non-elite|local knowledge|indigenous knowledge", 1),
+    (r"domestic (?:science|technolog)|household|\bfolk\b|popular culture|non-elite|local knowledge|indigenous knowledge", 1),
     (r"science communication|science writing|science journalism|science in the media|science fiction", 1),
 ]
 
@@ -52,10 +54,17 @@ GENRE_TERMS = [
     (r"literature review|review of the literature|review essay|essay review|critical essay|bibliograph(?:ic|y) essay", 3),
     (r"historiograph", 3),
     (r"state of the (?:field|art)|field review|survey of|overview of|agenda|prospects|new directions|stocktaking|assessment of the field", 3),
-    (r"rethinking|reconsidering|reassess|revisit|towards a|toward a|what is|the problem of|approaches to|perspectives on", 2),
+    (r"rethinking|reconsidering|reassess|revisit|towards a|toward a|the problem of|approaches to|perspectives? (?:on|from)|in (?:national|global|comparative|transnational) perspective", 2),
+    (r"reflections? on|historians|suggestions? from|varieties of|genres,|categories,|ready for|past, present|new histor|turn\b", 2),
     (r"\breview(?:s|ed|ing)?\b|\bsurvey\b|\boverview\b|introduction|critical (?:review|survey)|recent (?:work|scholarship|literature)", 1),
     (r"focus section|focus:|special issue|themed issue|this volume|this issue", 1),
 ]
+
+ABSTRACT_STRONG = re.compile(
+    r"review essay|literature review|review of the (?:recent )?(?:literature|scholarship)|historiograph(?:y|ical) (?:review|survey|overview|essay)"
+    r"|state of the (?:field|art)|surveys? (?:the )?(?:recent |existing )?(?:literature|scholarship|field)"
+    r"|this (?:article|essay|introduction|paper) (?:reviews|surveys|assesses|takes stock|considers the historiography)"
+    r"|historiography of|(?:recent|existing|current) (?:scholarship|literature|historiography)", re.I)
 
 DEFAULT_EXCLUDE_TITLE = re.compile(r"^(?:front|back) matter|^index$|^notes? on contributors|^editorial board|^corrigendum|^erratum|^errata|^about the", re.I)
 
@@ -97,12 +106,15 @@ def classify(rec):
     t_abs, h_abs = score(abstract, TOPIC_TERMS)
     topic = t_title * 3 + t_abs
     g_title, gh_title = score(title, GENRE_TERMS)
-    g_abs, gh_abs = score(abstract, GENRE_TERMS)
-    genre = g_title * 2 + g_abs
+    m = ABSTRACT_STRONG.search(abstract)
+    g_abs, gh_abs = (3, [m.group(0).lower()]) if m else (0, [])
+    genre = g_title * 2 + g_abs + (3 if rec.get("cluster") else 0)
+    if rec.get("cluster"):
+        gh_title = gh_title + ["themed cluster"]
     pages = page_count(rec.get("page"))
     rec["pages"] = pages
     # Plain book reviews: short, no abstract, no explicit review-essay marker.
-    strong_genre = g_title >= 3 or g_abs >= 3
+    strong_genre = g_title >= 3 or g_abs >= 3 or (bool(rec.get("cluster")) and g_title >= 2)
     if rec.get("type") == "book-review" and not strong_genre:
         return None
     if pages is not None and pages <= 4 and not strong_genre:
@@ -120,9 +132,30 @@ def classify(rec):
         return "medium"
     if topic >= 1 and genre >= 6 and strong_genre:
         return "medium"
+    if rec.get("cluster") and t_title >= 3:
+        return "medium"
     if topic >= 6 and pages and pages >= 20 and genre >= 2:
         return "medium"
     return None
+
+
+def mark_clusters(recs):
+    """Flag topical articles that sit next to other topical articles in the same
+    issue (typically an Isis Focus section or a themed set of essays)."""
+    groups = {}
+    for r in recs:
+        pc = page_count(r.get("page"))
+        if r["journal"] == "Osiris" or pc is None or pc < 5 or score(r["title"], TOPIC_TERMS)[0] < 3:
+            continue
+        m = re.match(r"\d+", r.get("page") or "")
+        r["_start"] = int(m.group(0)) if m else 0
+        r["_end"] = r["_start"] + pc - 1
+        groups.setdefault((r["journal"], r["year"], r["volume"], r["issue"]), []).append(r)
+    for g in groups.values():
+        g.sort(key=lambda r: r["_start"])
+        for a, b in zip(g, g[1:]):
+            if b["_start"] - a["_end"] <= 2:
+                a["cluster"] = b["cluster"] = True
 
 
 # ---------------------------------------------------------------- fetching
@@ -148,7 +181,7 @@ def get_json(url, params=None, tries=5):
 
 def fetch_crossref(issn, y0, y1):
     cursor, out = "*", []
-    fields = "DOI,title,author,issued,volume,issue,page,abstract,type,container-title,URL,subtype"
+    fields = "DOI,title,author,issued,volume,issue,page,abstract,type,container-title,URL"
     while True:
         data = get_json(f"{CR}/journals/{issn}/works", {
             "filter": f"from-pub-date:{y0},until-pub-date:{y1}",
@@ -182,19 +215,31 @@ def to_rec(item, journal):
     }
 
 
-def oa_abstract(doi):
-    try:
-        w = get_json(f"{OA}/works/https://doi.org/{doi}", {"mailto": MAILTO, "select": "abstract_inverted_index"})
-    except requests.RequestException:
-        return ""
-    inv = (w or {}).get("abstract_inverted_index")
-    if not inv:
-        return ""
-    pos = {}
-    for word, idxs in inv.items():
-        for i in idxs:
-            pos[i] = word
-    return " ".join(pos[i] for i in sorted(pos))
+def oa_abstracts(dois, api_key, batch=50):
+    """Batch back-fill abstracts from OpenAlex; returns {doi_lower: abstract}."""
+    out = {}
+    for i in range(0, len(dois), batch):
+        chunk = dois[i:i + batch]
+        params = {"filter": "doi:" + "|".join(chunk), "per-page": batch,
+                  "select": "doi,abstract_inverted_index", "mailto": MAILTO, "api_key": api_key}
+        try:
+            r = SESSION.get(f"{OA}/works", params=params, timeout=60)
+            if r.status_code == 429:
+                print("  OpenAlex budget exhausted; stopping back-fill.", file=sys.stderr)
+                break
+            r.raise_for_status()
+        except requests.RequestException as e:
+            print(f"  OpenAlex error {e.__class__.__name__}; skipping chunk", file=sys.stderr)
+            continue
+        for w in r.json().get("results", []):
+            inv = w.get("abstract_inverted_index")
+            if not inv:
+                continue
+            pos = {ix: word for word, idxs in inv.items() for ix in idxs}
+            out[(w.get("doi") or "").replace("https://doi.org/", "").lower()] = " ".join(pos[k] for k in sorted(pos))
+        if (i // batch) % 10 == 0:
+            print(f"  {min(i + batch, len(dois))}/{len(dois)}", file=sys.stderr)
+    return out
 
 
 # ------------------------------------------------------------------ output
@@ -240,9 +285,12 @@ def write_outputs(recs, outdir, y0, y1):
 
 
 # -------------------------------------------------------------------- main
-def run(outdir, y0, y1):
+def run(outdir, y0, y1, reuse=False):
+    cache = outdir / "raw_records.json"
     all_recs = []
-    for name, issns in JOURNALS.items():
+    if reuse and cache.exists():
+        all_recs = json.loads(cache.read_text(encoding="utf-8"))
+    for name, issns in ([] if all_recs else JOURNALS.items()):
         seen = set()
         for issn in issns:
             print(f"[{name}] {issn}", file=sys.stderr)
@@ -254,6 +302,10 @@ def run(outdir, y0, y1):
                 if rec and rec["year"] and y0 <= rec["year"] <= y1:
                     all_recs.append(rec)
         print(f"[{name}] {len(seen)} records", file=sys.stderr)
+
+    outdir.mkdir(parents=True, exist_ok=True)
+    if not (reuse and cache.exists()):
+        cache.write_text(json.dumps(all_recs, ensure_ascii=False), encoding="utf-8")
 
     # Osiris: a volume whose other articles hit the topic often has a programmatic intro.
     vol_topic = {}
@@ -274,13 +326,16 @@ def run(outdir, y0, y1):
             continue
         if not r["abstract"]:
             cands.append(r)
-    print(f"Back-filling abstracts for {len(cands)} items via OpenAlex ...", file=sys.stderr)
-    for k, r in enumerate(cands, 1):
-        r["abstract"] = oa_abstract(r["doi"]) if r["doi"] else ""
-        if k % 200 == 0:
-            print(f"  {k}/{len(cands)}", file=sys.stderr)
-        time.sleep(0.05)
+    api_key = os.environ.get("OPENALEX_API_KEY")
+    if api_key:
+        print(f"Back-filling abstracts for {len(cands)} items via OpenAlex ...", file=sys.stderr)
+        got = oa_abstracts([r["doi"].lower() for r in cands if r["doi"]], api_key)
+        for r in cands:
+            r["abstract"] = got.get(r["doi"].lower(), "")
+    else:
+        print("OPENALEX_API_KEY not set: skipping OpenAlex abstract back-fill (Crossref abstracts only).", file=sys.stderr)
 
+    mark_clusters(all_recs)
     hits = []
     for r in all_recs:
         tier = classify(r)
@@ -317,7 +372,8 @@ if __name__ == "__main__":
     ap.add_argument("--from", dest="y0", type=int, default=1980)
     ap.add_argument("--until", dest="y1", type=int, default=2026)
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--reuse", action="store_true", help="reuse cached raw_records.json instead of refetching")
     a = ap.parse_args()
     if a.selftest:
         selftest()
-    run(Path(a.out), a.y0, a.y1)
+    run(Path(a.out), a.y0, a.y1, a.reuse)
