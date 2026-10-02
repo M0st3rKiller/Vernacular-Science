@@ -10,6 +10,7 @@ Usage:  python3 search_reviews.py [--out DIR] [--from 1980] [--until 2026]
 """
 import argparse
 import csv
+import html
 import json
 import os
 import re
@@ -43,7 +44,7 @@ TOPIC_TERMS = [
     (r"ordinary (?:people|science|technolog)", 2),
     (r"lay (?:knowledge|science|audience|expertise|reader|public)", 2),
     (r"\bamateurs?\b", 2),
-    (r"artisan|craft(?:s|sm[ae]n)?\b|practitioner knowledge|tacit knowledge|vulgari[sz]", 2),
+    (r"\bartisan|\bcraft(?:s|sm[ae]n)?\b|practitioner knowledge|tacit knowledge|vulgari[sz]", 2),
     (r"mechanics'? institute|science lecture|public lecture|almanac|chapbook|cheap print|periodical", 1),
     (r"domestic (?:science|technolog)|household|\bfolk\b|popular culture|non-elite|local knowledge|indigenous knowledge", 1),
     (r"science communication|science writing|science journalism|science in the media|science fiction", 1),
@@ -309,6 +310,92 @@ def write_outputs(recs, outdir, y0, y1):
             w.writerow({**r, "topic_hits": "; ".join(r["topic_hits"]), "genre_hits": "; ".join(r["genre_hits"])})
 
 
+# ------------------------------------------------------------- book reviews
+# Book reviews carry the book citation as the "title" and the reviewer as "author",
+# with no abstract, so the match can only use the words in the book's title.
+BROAD_BOOK_TERMS = re.compile(
+    r"\bpopular\b|\bpublic (?:lectures?|science|knowledge|understanding|sphere)|\bscience (?:and|in|for) (?:the )?(?:public|people|print|culture|society|everyday)"
+    r"|\blectur(?:e|ers|ing)\b|exhibit|museum|spectacle|\breaders?\b|\breading\b|newspaper|magazine|periodical|publishing|\bprint\b|textbook|encyclop[a]?edi"
+    r"|\bartisans?\b|\bcrafts?(?:men)?\b|workshop|mechanics|\bamateurs?\b|domestic|everyday|vernacular|\blay\b|entertain|theatre|\bwonder|\bwomen and science"
+    r"|\bchildren|\bhobby|\bhome\b|\bhousehold|kitchen|garden|\bcommon\b|ordinary|\bfolk", re.I)
+NON_BOOK_TITLE = re.compile(
+    r"^(?:in reply|reply|letters?|notes on contributors|index|front matter|back matter|corrigend|errat|editorial|obituary|announcement|call for|"
+    r"notices of books|books received|isis current bibliography|society for the history|corrections?|about the authors?)", re.I)
+
+
+def clean_citation(t):
+    t = html.unescape(t)
+    for _ in range(3):
+        t = re.sub(r"\b([A-Z]) ([A-Z]{2,})\b", r"\1\2", t)  # small-caps artefact "R OSALIND" -> "ROSALIND"
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def classify_book_review(rec):
+    title = rec["title"]
+    pc = page_count(rec.get("page"))
+    if pc is None or pc > 6 or NON_BOOK_TITLE.search(title) or rec["journal"] == "Osiris":
+        return None
+    cit = clean_citation(title)
+    strong, sh = score(cit, TOPIC_TERMS)
+    broad = sorted({m.group(0).lower() for m in BROAD_BOOK_TERMS.finditer(cit)})
+    rec["citation"] = cit
+    rec["topic_hits"] = sh + broad
+    if strong >= 3:
+        return "strong"
+    if strong >= 1 or len(broad) >= 2:
+        return "broad"
+    return None
+
+
+def write_book_reviews(recs, outdir, y0, y1):
+    order = {"strong": 0, "broad": 1}
+    recs.sort(key=lambda r: (order[r["tier"]], r["year"] or 0, r["journal"]))
+    for i, r in enumerate(recs, 1):
+        r["id"] = i
+    n_s = sum(r["tier"] == "strong" for r in recs)
+    L = ["# Book reviews on vernacular / popular / everyday science & technology", "",
+         f"Journals: Isis, History of Science, BJHS (Osiris carries no book reviews) · {y0}–{y1} · generated {time.strftime('%Y-%m-%d')} "
+         f"· {len(recs)} reviews ({n_s} strong, {len(recs) - n_s} broad)", "",
+         "Matching uses only the words in the book's title (Crossref has no abstract or text for reviews), so books whose titles "
+         "do not signal the topic are missed. **strong** = clear topic term in the title; **broad** = weaker or generic cue, check by hand. "
+         "The review's author is the reviewer, not the book's author.", "",
+         "## Table of contents", "", "| # | Tier | Reviewed in | Book (as cited) | Reviewer | Matched terms |", "|---|---|---|---|---|---|"]
+    for r in recs:
+        L.append(f"| [{r['id']}](#b{r['id']}) | {r['tier']} | {r['journal']} {r['year']} | {md_escape(r['citation'][:170])} | "
+                 f"{md_escape(r['authors'])} | {md_escape(', '.join(r['topic_hits'][:4]))} |")
+    L += ["", "## Entries", ""]
+    for r in recs:
+        vol = f"{r['volume']}" + (f"({r['issue']})" if r["issue"] else "")
+        L += [f'<a id="b{r["id"]}"></a>', f"### {r['id']}. {r['citation']}", "",
+              f"- **Reviewed in:** {r['journal']} {vol}, {r['year']}, pp. {r['page']}",
+              f"- **Reviewer:** {r['authors'] or 'n/a'}",
+              f"- **Review DOI:** [{r['doi']}](https://doi.org/{r['doi']})",
+              f"- **Tier:** {r['tier']} · matched: {', '.join(r['topic_hits']) or '—'}", ""]
+    (outdir / "book_reviews.md").write_text("\n".join(L), encoding="utf-8")
+    (outdir / "book_reviews.json").write_text(json.dumps(recs, ensure_ascii=False, indent=1), encoding="utf-8")
+    with open(outdir / "book_reviews.csv", "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, ["id", "tier", "journal", "year", "volume", "issue", "page", "citation", "authors", "doi", "topic_hits"], extrasaction="ignore")
+        w.writeheader()
+        for r in recs:
+            w.writerow({**r, "topic_hits": "; ".join(r["topic_hits"])})
+
+
+def run_book_reviews(outdir, y0, y1):
+    cache = outdir / "raw_records.json"
+    if not cache.exists():
+        sys.exit("Run the main search first (it writes output/raw_records.json).")
+    recs = json.loads(cache.read_text(encoding="utf-8"))
+    hits = []
+    for r in recs:
+        if r.get("year") and y0 <= r["year"] <= y1:
+            tier = classify_book_review(r)
+            if tier:
+                r["tier"] = tier
+                hits.append(r)
+    write_book_reviews(hits, outdir, y0, y1)
+    print(f"Done: {len(hits)} book reviews -> {outdir / 'book_reviews.md'}", file=sys.stderr)
+
+
 # -------------------------------------------------------------------- main
 def run(outdir, y0, y1, reuse=False):
     cache = outdir / "raw_records.json"
@@ -401,8 +488,12 @@ if __name__ == "__main__":
     ap.add_argument("--from", dest="y0", type=int, default=1980)
     ap.add_argument("--until", dest="y1", type=int, default=2026)
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--book-reviews", action="store_true", help="list book reviews on the topic (needs a previous run's raw_records.json)")
     ap.add_argument("--reuse", action="store_true", help="reuse cached raw_records.json instead of refetching")
     a = ap.parse_args()
     if a.selftest:
         selftest()
-    run(Path(a.out), a.y0, a.y1, a.reuse)
+    if a.book_reviews:
+        run_book_reviews(Path(a.out), a.y0, a.y1)
+    else:
+        run(Path(a.out), a.y0, a.y1, a.reuse)
