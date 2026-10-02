@@ -131,7 +131,7 @@ KEY_TITLES = {
     "Ruth Schwartz Cowan": r"more work for mother", "Ronald R. Kline": r"consumers in the country",
     "Susan Sheets-Pyenson": r"cathedrals of science", "Ann B. Shteir": r"cultivating women, cultivating science",
     "Alison Winter": r"mesmerized: powers of mind", "Lynn K. Nyhart": r"modern nature: the rise of the biological",
-    "Peter Burke": r"social history of knowledge", "Kapil Raj": r"relocating modern science",
+    "Peter Burke": r"from gutenberg to diderot", "Kapil Raj": r"relocating modern science",
     "Deborah Harkness": r"the jewel house", "Pamela O. Long": r"openness, secrecy, authorship",
     "Iwan Rhys Morus": r"frankenstein.s children", "Marcel C. LaFollette": r"making science our own|science on the air",
     "Michael R. Lynn": r"popular science and public opinion", "Maurice Crosland": r"language of science: from the vernacular",

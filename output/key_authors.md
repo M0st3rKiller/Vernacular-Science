@@ -90,7 +90,7 @@
 | 30 | [Ann B. Shteir](#p30) | 英國的女性與植物學、植物學的普及與性別… | [background] | 1 | 4 | 8 |
 | 31 | [Alison Winter](#p31) | 維多利亞時期的催眠術、公共實踐與科學權威、記憶史… | [background] | 2 | 4 | 0 |
 | 32 | [Lynn K. Nyhart](#p32) | 德國的大眾博物學、博物館、生物學的學院化… | [background] | 5 | 6 | 13 |
-| 33 | [Peter Burke](#p33) | 知識社會史、早期近代歐洲的文化史… | [background] | 0 | 1 | 0 |
+| 33 | [Peter Burke](#p33) | 知識社會史、早期近代歐洲的文化史… | [background] | 0 | 0 | 0 |
 | 34 | [Kapil Raj](#p34) | 南亞與歐洲之間的科學流通、翻譯與地方知識… | [background] | 3 | 3 | 4 |
 | 35 | [Deborah Harkness](#p35) | 伊麗莎白時代倫敦的工匠、醫生與自然知識實踐者… | [background] | 1 | 4 | 3 |
 | 36 | [Pamela O. Long](#p36) | 工匠與技術寫作、文藝復興時期技術知識的書寫與公開… | [background] | 2 | 8 | 11 |
@@ -1196,9 +1196,9 @@
 
 - 未在匹配中找到
 
-**其著作在四刊中被評的書評**（1）
+**其著作在四刊中被評的書評**（0）
 
-- 2002 · Isis 93(1), pp. 166-167 · [Fritz Ringer. Toward a Social History of Knowledge: Collected Essays . 239 pp., frontis., figs., tables, index.New York/Oxford: Berghahn Books, 2001. ](https://doi.org/10.1086/343344)
+- 未在匹配中找到
 
 **他／她為四刊寫的書評**（0）
 
