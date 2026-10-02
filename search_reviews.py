@@ -55,7 +55,7 @@ GENRE_TERMS = [
     (r"historiograph", 3),
     (r"state of the (?:field|art)|field review|survey of|overview of|agenda|prospects|new directions|stocktaking|assessment of the field", 3),
     (r"rethinking|reconsidering|reassess|revisit|towards a|toward a|the problem of|approaches to|perspectives? (?:on|from)|in (?:national|global|comparative|transnational) perspective", 2),
-    (r"reflections? on|historians|suggestions? from|varieties of|genres,|categories,|ready for|past, present|new histor|turn\b", 2),
+    (r"reflections? on|historians|suggestions? from|varieties of|genres,|categories,|ready for|past, present|new histor", 2),
     (r"\breview(?:s|ed|ing)?\b|\bsurvey\b|\boverview\b|introduction|critical (?:review|survey)|recent (?:work|scholarship|literature)", 1),
     (r"focus section|focus:|special issue|themed issue|this volume|this issue", 1),
 ]
