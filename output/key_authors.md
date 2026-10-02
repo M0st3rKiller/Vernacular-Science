@@ -1425,3 +1425,67 @@
 - 1987 · Isis 78(4), pp. 650-652 · [Selling Science: How the Press Covers Science and Technology . Dorothy Nelkin](https://doi.org/10.1086/354615)
 - 1989 · Isis 80(3), pp. 501-502 · [How Superstition Won and Science Lost: Popularizing Science and Health in the United States . John C. Burnham](https://doi.org/10.1086/355098)
 - 2019 · Isis 110(4), pp. 755-757 · [Track Conditions: Upon Revisiting How Superstition Won and Science Lost](https://doi.org/10.1086/706482)
+
+
+---
+
+## 四、兩個外部連接
+
+網址均在生成本文件時直接打開確認過（見各處「已核實」）。「我的判斷」是我的解讀，不是網站或文獻裡的原話。
+
+<a id="conn1"></a>
+### 連接一：Science for the People（Schmalzer 的「人民科學」小組）
+
+- **網站：** https://scienceforthepeople.org/ · 工作小組列表：https://scienceforthepeople.org/working-groups/ · 歷史刊物數字檔案：https://archive.scienceforthepeople.org/
+- **已核實（來自網站）：** 這是一個「致力於科學與社會的徹底變革」的組織。1969 年從 Scientists and Engineers for Social and Political Action（SESPA）起家，後來因同名雙月刊而改名為 Science for the People。網站列出的工作小組包括 Publication、Archives（數字化歷史刊物 1970 年起的各卷）、Technology、Science Education、Biology and Society、Ecology、Anti-Militarism、Labor 等。
+- **與 Schmalzer 的聯繫：** 數據裡能確認的是她與 Daniel S. Chard、Alyssa Botelho 合編了 *Science for the People: Documents from America's Movement of Radical Scientists*（Isis 2019 有書評），她的 *The People's Peking Man* 在 Isis 和 BJHS 2010 都有書評。**我沒有在網站頁面上找到她的名字，所以不能說她現在屬於哪個工作小組。**
+- **「人民科學」這個詞的說明：** 我把「人民科學 group」理解為 Science for the People。如果你指的是另一個團體，請告訴我。
+- **我的判斷：** 這個運動把科學看作社會過程和政治活動，提出科學應由普通人參與和使用，與 vernacular／popular science 的「非精英行動者」那條線有交集，但它的核心是政治批判，並不等同於科學普及。
+- **Schmalzer 在四刊中的記錄：** 文章 2 條，其著作被評 5 條，自己寫書評 4 條（見上文第 13 條）。
+
+<a id="conn2"></a>
+### 連接二：MPIWG 的 Daston 部門（Department II）
+
+- **部門頁面：** https://www.mpiwg-berlin.mpg.de/research/departments/dept-daston · Daston 個人頁：https://www.mpiwg-berlin.mpg.de/users/ldaston · 機構首頁：https://www.mpiwg-berlin.mpg.de/
+- **已核實（來自網站）：** 部門全名 *Ideals & Practices of Rationality*，1995–2019，馬克斯·普朗克科學史研究所（柏林）。Daston 2019 年 6 月退休後，**該部門已結束**，現在在「Past Departments」下。部門留下 22 卷 Working Group 論文集，題目包括自然的道德權威、科學觀察、科學對象的傳記、冷戰理性、官僚知識和數據史。
+- **和你的主題最相關的一段（部門介紹原文大意）：** 部門介紹以領航員、織工、城市官員、釀酒師、草藥師的「近距離觀察與經驗判斷」為例，問它們與數學證明、實驗室測量是否屬於同一種理性。這等於把工匠與日常實踐當作理性知識來處理。
+- **項目頁（從頁面鏈接名讀出，標題為我據網址推斷）：** Scientific Objectivity、Historia、Natural & Human Sciences、Scientific Personae、Observation、Sciences of the Archives、Science in Circulation、Gender & Science、Cold War Rationality。入口：https://www.mpiwg-berlin.mpg.de/research/departments/dept-daston
+- **現在的 MPIWG：** 首頁說研究所由 Etienne Benson 和 Dagmar Schäfer 兩個部門組成（*Knowledge Systems and Collective Life*、*Artifacts, Action, Knowledge*）。**Schäfer 就是上文 Isis 2017 'Thinking in Many Tongues' 的作者**，也就是把語言與科學連在一起那組的人，她在四刊中有 1 條文章記錄。
+- **Daston 在四刊中的記錄：** 文章 9 條，其著作被評 21 條，自己寫書評 13 條。其中 *The Empire of Chance*（與 Gigerenzer 等合著，標題副題是 *How Probability Changed Science and Everyday Life*）在 Isis 和 BJHS 1991 都有書評，是結果中「everyday」一詞的來源之一。
+- **我的判斷：** Daston 部門不是專門研究 vernacular science 的，但它的「理性的實踐」和「科學對象的歷史」取向，以及對手藝、日常判斷的關注，是 vernacular/everyday 研究常引用的背景。是否把它列為你的核心來源，需要你看具體論文集。
+
+**Daston 在四刊的文章**（9）
+
+- 1981 · Isis 72(2), pp. 267-283 · [Critical Problems in the History of Science](https://doi.org/10.1086/352725)
+- 1991 · Isis 82(3), pp. 522-531 · [History of Science in an Elegiac Mode: E. A. Burtt's Metaphysical Foundations of Modern Physical Science Revisited](https://doi.org/10.1086/355842)
+- 1995 · Osiris 10, pp. 2-24 · [The Moral Economy of Science](https://doi.org/10.1086/368740)
+- 2007 · Isis 98(4), pp. 801-808 · [The History of EmergencesIan Hacking. The Emergence of Probability: A Philosophical Study of Early Ideas about Probability, Induction, and Statistical](https://doi.org/10.1086/529273)
+- 2008 · Isis 99(1), pp. 97-110 · [On Scientific Observation](https://doi.org/10.1086/587535)
+- 2012 · Osiris 27(1), pp. 156-187 · [The Sciences of the Archive](https://doi.org/10.1086/667826)
+- 2014 · Isis 105(3), pp. 579-587 · [The Naturalistic Fallacy Is Modern](https://doi.org/10.1086/678173)
+- 2015 · Isis 106(2), pp. 378-390 · [History of Science and History of Philologies](https://doi.org/10.1086/681980)
+- 2015 · Isis 106(3), pp. 669-676 · [Simon and the Sirens: A Commentary](https://doi.org/10.1086/683531)
+
+**Daston 的著作在四刊被評的書評**（21）
+
+- 1989 · BJHS 22(4), pp. 444-446 · [Lorraine Daston. Classical Probability in the Enlightenment. Princeton: Princeton University Press, 1988. Pp. xviii + 423. ISBN 0-691-08497-1, £27.50,](https://doi.org/10.1017/s000708740002642x)
+- 1991 · BJHS 24(1), pp. 124-126 · [Gerd Gigerenzer, Zeno Swijtink, Theodore Porter, Lorraine Daston, John Beatty and Lorenz Kruger. The Empire of Chance. How Probability Changed Science](https://doi.org/10.1017/s0007087400028697)
+- 1991 · Isis 82(1), pp. 103-105 · [The Empire of Chance: How Probability Changed Science and Everyday Life . Gerd Gigerenzer , Zeno Swijtink , Theodore Porter , Lorraine Daston , John B](https://doi.org/10.1086/355648)
+- 1999 · Isis 90(3), pp. 560-562 · [The Study of the Unusual Wonders and the Order of Nature, 1150-1750 . Lorraine Daston , Katharine Park](https://doi.org/10.1086/384417)
+- 2001 · Isis 92(4), pp. 773-774 · [Biographies of Scientific Objects . Lorraine Daston](https://doi.org/10.1086/385385)
+- 2004 · Isis 95(4), pp. 675-677 · [Lorraine Daston;, Fernando Vidal (Editors). The Moral Authority of Nature . vii + 519 pp., bibl., index. Chicago: University of Chicago Press, 2004.](https://doi.org/10.1086/432276)
+- 2005 · Isis 96(1), pp. 91-94 · [Lorraine Daston (Editor). Things That Talk: Object Lessons from Art and Science . 447 pp., illus., index. New York: Zone Books, 2004. $34.50 (cloth).S](https://doi.org/10.1086/430683)
+- 2006 · BJHS 39(3), pp. 436-437 · [LORRAINE DASTON (ed.), Things that Talk: Object Lessons from Art and Science. New York: Zone Books/MIT Press, 2004. Pp. 447. ISBN 1-890951-43-9. $37.5](https://doi.org/10.1017/s0007087406218685)
+- 2006 · BJHS 39(4), pp. 595-596 · [LORRAINE DASTON and FERNANDO VITAL (eds.), The Moral Authority of Nature. Chicago and London: University of Chicago Press, 2004. Pp. vii+519. ISBN 0-2](https://doi.org/10.1017/s0007087406259053)
+- 2006 · Isis 97(1), pp. 194-195 · [Julian H. Franklin. Animal Rights and Moral Philosophy . xix + 151 pp., bibl., index. New York: Columbia University Press, 2005. $35 (cloth).Lorraine ](https://doi.org/10.1086/504573)
+- 2007 · BJHS 40(2), pp. 277-279 · [LORRAINE DASTON and GREGG MITMAN (eds.), Thinking with Animals: New Perspectives on Anthropomorphism. New York: Columbia University Press, 2005. Pp. v](https://doi.org/10.1017/s0007087407009521)
+- 2007 · Isis 98(2), pp. 361-365 · [The Importance of Early Modern European Science and the State of the FieldKatharine Park;, Lorraine Daston (Editors). The Cambridge History of Science](https://doi.org/10.1086/518197)
+- 2008 · BJHS 41(1), pp. 136-137 · [Katharine Park and Lorraine Daston (eds.) The Cambridge History of Science, Volume 3: Early Modern Science. Cambridge: Cambridge University Press, 200](https://doi.org/10.1017/s0007087407000751)
+- 2010 · BJHS 43(1), pp. 123-124 · [Lorraine Daston and Michael Stolleis (eds.), Natural Law and Laws of Nature in Early Modern Europe: Jurisprudence, Theology, Moral and Natural Philoso](https://doi.org/10.1017/s0007087410000105)
+- 2010 · Isis 101(4), pp. 872-873 · [Lorraine Daston;, Michael Stolleis (Editors). Natural Law and Laws of Nature in Early Modern Europe: Jurisprudence, Theology, Moral and Natural Philos](https://doi.org/10.1086/659679)
+- 2012 · Isis 103(1), pp. 157-158 · [Lorraine Daston;, Elizabeth Lunbeck (Editors). Histories of Scientific Observation . 460 pp., illus., bibls., index. Chicago/London: University of Chi](https://doi.org/10.1086/666397)
+- 2015 · BJHS 48(3), pp. 539-540 · [Paul Erickson, Judy L. Klein, Lorraine Daston, Rebecca Lemov, Thomas Sturm and Michael D. Gordin, How Reason Almost Lost Its Mind: The Strange Career ](https://doi.org/10.1017/s0007087415000540)
+- 2015 · Isis 106(2), pp. 501-502 · [Paul Erickson;, Judy L. Klein;, Lorraine Daston;, Rebecca Lemov;, Thomas Sturm;, Michael D. Gordin. How Reason Almost Lost Its Mind: The Strange Caree](https://doi.org/10.1086/682821)
+- 2017 · BJHS 50(3), pp. 562-563 · [Robert J. Richards and Lorraine Daston (eds.), Kuhn's Structure of Scientific Revolutions at Fifty: Reflections on a Science Classic. Chicago: The Uni](https://doi.org/10.1017/s0007087417000784)
+- 2017 · Isis 108(2), pp. 430-432 · [Robert J. Richards; Lorraine Daston (Editors). Kuhn’s “Structure of Scientific Revolutions” at Fifty: Reflections on a Science Classic . 208 pp., figs](https://doi.org/10.1086/692493)
+- 2018 · Isis 109(1), pp. 145-146 · [Lorraine Daston (Editor). Science in the Archives: Pasts, Presents, Futures . viii + 397 pp., figs., bibl., index. Chicago/London: University of Chica](https://doi.org/10.1086/696807)

@@ -140,6 +140,11 @@ KEY_TITLES = {
 }
 
 
+EXTRA_LINKS = {
+    "Sigrid Schmalzer": "→ 見下文「連接一」：[Science for the People](https://scienceforthepeople.org/)（她合編了該運動的文獻集）",
+}
+
+
 def norm(s):
     s = unicodedata.normalize("NFKD", s or "")
     s = "".join(c for c in s if not unicodedata.combining(c))
@@ -183,6 +188,33 @@ def person_records(recs, patterns, title_rx=None):
             arts.append((r, r["title"]))
     key = lambda t: (t[0]["year"], t[0]["journal"])
     return sorted(arts, key=key), sorted(reviewed, key=key), sorted(reviewing, key=key)
+
+
+def connections(recs):
+    """Two external connections. Facts about the websites were read on the sites themselves (see 'Checked' notes)."""
+    sch = person_records(recs, [r"sigrid\s+schmalzer"], r"people.s peking man|science for the people: documents")
+    das = person_records(recs, [r"lorraine\s+daston"], r"classical probability|wonders and the order of nature|the empire of chance|things that talk|moral authority of nature|biographies of scientific objects")
+    sfer = person_records(recs, [r"dagmar\s+sch[aä]fer"])
+    out = ["", "---", "", "## 四、兩個外部連接", "",
+           "網址均在生成本文件時直接打開確認過（見各處「已核實」）。「我的判斷」是我的解讀，不是網站或文獻裡的原話。", "",
+           '<a id="conn1"></a>', "### 連接一：Science for the People（Schmalzer 的「人民科學」小組）", "",
+           "- **網站：** https://scienceforthepeople.org/ · 工作小組列表：https://scienceforthepeople.org/working-groups/ · 歷史刊物數字檔案：https://archive.scienceforthepeople.org/",
+           "- **已核實（來自網站）：** 這是一個「致力於科學與社會的徹底變革」的組織。1969 年從 Scientists and Engineers for Social and Political Action（SESPA）起家，後來因同名雙月刊而改名為 Science for the People。網站列出的工作小組包括 Publication、Archives（數字化歷史刊物 1970 年起的各卷）、Technology、Science Education、Biology and Society、Ecology、Anti-Militarism、Labor 等。",
+           "- **與 Schmalzer 的聯繫：** 數據裡能確認的是她與 Daniel S. Chard、Alyssa Botelho 合編了 *Science for the People: Documents from America's Movement of Radical Scientists*（Isis 2019 有書評），她的 *The People's Peking Man* 在 Isis 和 BJHS 2010 都有書評。**我沒有在網站頁面上找到她的名字，所以不能說她現在屬於哪個工作小組。**",
+           "- **「人民科學」這個詞的說明：** 我把「人民科學 group」理解為 Science for the People。如果你指的是另一個團體，請告訴我。",
+           "- **我的判斷：** 這個運動把科學看作社會過程和政治活動，提出科學應由普通人參與和使用，與 vernacular／popular science 的「非精英行動者」那條線有交集，但它的核心是政治批判，並不等同於科學普及。",
+           "- **Schmalzer 在四刊中的記錄：** 文章 %d 條，其著作被評 %d 條，自己寫書評 %d 條（見上文第 13 條）。" % (len(sch[0]), len(sch[1]), len(sch[2])), "",
+           '<a id="conn2"></a>', "### 連接二：MPIWG 的 Daston 部門（Department II）", "",
+           "- **部門頁面：** https://www.mpiwg-berlin.mpg.de/research/departments/dept-daston · Daston 個人頁：https://www.mpiwg-berlin.mpg.de/users/ldaston · 機構首頁：https://www.mpiwg-berlin.mpg.de/",
+           "- **已核實（來自網站）：** 部門全名 *Ideals & Practices of Rationality*，1995–2019，馬克斯·普朗克科學史研究所（柏林）。Daston 2019 年 6 月退休後，**該部門已結束**，現在在「Past Departments」下。部門留下 22 卷 Working Group 論文集，題目包括自然的道德權威、科學觀察、科學對象的傳記、冷戰理性、官僚知識和數據史。",
+           "- **和你的主題最相關的一段（部門介紹原文大意）：** 部門介紹以領航員、織工、城市官員、釀酒師、草藥師的「近距離觀察與經驗判斷」為例，問它們與數學證明、實驗室測量是否屬於同一種理性。這等於把工匠與日常實踐當作理性知識來處理。",
+           "- **項目頁（從頁面鏈接名讀出，標題為我據網址推斷）：** Scientific Objectivity、Historia、Natural & Human Sciences、Scientific Personae、Observation、Sciences of the Archives、Science in Circulation、Gender & Science、Cold War Rationality。入口：https://www.mpiwg-berlin.mpg.de/research/departments/dept-daston",
+           "- **現在的 MPIWG：** 首頁說研究所由 Etienne Benson 和 Dagmar Schäfer 兩個部門組成（*Knowledge Systems and Collective Life*、*Artifacts, Action, Knowledge*）。**Schäfer 就是上文 Isis 2017 'Thinking in Many Tongues' 的作者**，也就是把語言與科學連在一起那組的人，她在四刊中有 %d 條文章記錄。" % len(sfer[0]),
+           "- **Daston 在四刊中的記錄：** 文章 %d 條，其著作被評 %d 條，自己寫書評 %d 條。其中 *The Empire of Chance*（與 Gigerenzer 等合著，標題副題是 *How Probability Changed Science and Everyday Life*）在 Isis 和 BJHS 1991 都有書評，是結果中「everyday」一詞的來源之一。" % (len(das[0]), len(das[1]), len(das[2])),
+           "- **我的判斷：** Daston 部門不是專門研究 vernacular science 的，但它的「理性的實踐」和「科學對象的歷史」取向，以及對手藝、日常判斷的關注，是 vernacular/everyday 研究常引用的背景。是否把它列為你的核心來源，需要你看具體論文集。", ""]
+    for title, lst in (("Daston 在四刊的文章", das[0]), ("Daston 的著作在四刊被評的書評", das[1])):
+        out += [f"**{title}**（{len(lst)}）", ""] + ([line(r, t) for r, t in lst[:25]] or ["- 未在匹配中找到"]) + [""]
+    return out
 
 
 def main(outdir="output"):
@@ -254,7 +286,7 @@ def main(outdir="output"):
             else:
                 body.append("- 未在匹配中找到")
             body.append("")
-    (outdir / "key_authors.md").write_text("\n".join(L + body), encoding="utf-8")
+    (outdir / "key_authors.md").write_text("\n".join(L + body + connections(recs)), encoding="utf-8")
     print(f"Done: {len(PEOPLE)} people -> {outdir / 'key_authors.md'}", file=sys.stderr)
 
 
