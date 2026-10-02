@@ -53,9 +53,9 @@ TOPIC_TERMS = [
 GENRE_TERMS = [
     (r"literature review|review of the literature|review essay|essay review|critical essay|bibliograph(?:ic|y) essay", 3),
     (r"historiograph", 3),
-    (r"state of the (?:field|art)|field review|survey of|overview of|agenda|prospects|new directions|stocktaking|assessment of the field", 3),
+    (r"state of the (?:field|art)|field review|survey of|overview of|(?:research |new )?agenda\b|prospects|new directions|stocktaking|assessment of the field", 3),
     (r"rethinking|reconsidering|reassess|revisit|towards a|toward a|the problem of|approaches to|perspectives? (?:on|from)|in (?:national|global|comparative|transnational) perspective", 2),
-    (r"reflections? on|historians|suggestions? from|varieties of|genres,|categories,|ready for|past, present|new histor", 2),
+    (r"reflections? on|historians|suggestions? from|varieties of|genres,|categories,|ready for|past, present|new histor|presidential address", 2),
     (r"\breview(?:s|ed|ing)?\b|\bsurvey\b|\boverview\b|introduction|critical (?:review|survey)|recent (?:work|scholarship|literature)", 1),
     (r"focus section|focus:|special issue|themed issue|this volume|this issue", 1),
 ]
@@ -63,8 +63,7 @@ GENRE_TERMS = [
 ABSTRACT_STRONG = re.compile(
     r"review essay|literature review|review of the (?:recent )?(?:literature|scholarship)|historiograph(?:y|ical) (?:review|survey|overview|essay)"
     r"|state of the (?:field|art)|surveys? (?:the )?(?:recent |existing )?(?:literature|scholarship|field)"
-    r"|this (?:article|essay|introduction|paper) (?:reviews|surveys|assesses|takes stock|considers the historiography)"
-    r"|historiography of|(?:recent|existing|current) (?:scholarship|literature|historiography)", re.I)
+    r"|this (?:article|essay|introduction|paper) (?:reviews|surveys|takes stock|considers the historiography)", re.I)
 
 DEFAULT_EXCLUDE_TITLE = re.compile(r"^(?:front|back) matter|^index$|^notes? on contributors|^editorial board|^corrigendum|^erratum|^errata|^about the", re.I)
 
@@ -96,45 +95,71 @@ def page_count(page):
     return None
 
 
+# Reviews of a field talk about the literature AND argue/reflect in the first person;
+# an ordinary research article usually does only one of the two.
+FIELD_CUES = re.compile(r"historiograph|literature|scholarship|\bhistorians\b|\bthe field\b|\bfield of\b", re.I)
+ESSAY_CUES = re.compile(
+    r"this (?:essay|introduction|afterword|special issue|forum|section|volume|collection)|we (?:should|suggest|propose)|suggests that|\bagenda\b"
+    r"|rethink|reassess|reconsider|reflections?|perspectives?|categor|conceptual|definition|reconceptuali", re.I)
+FRAMING_TITLE = re.compile(r"^(?:introduction|afterword|epilogue|preface|foreword|editorial)\b", re.I)
+EXCLUDE_DOIS = {
+    "10.1177/007327531305100202",  # Staley, historiography of physics: off-topic (excluded by user)
+}
+STRONG_TOPIC = [t for t in TOPIC_TERMS if t[1] >= 3]
+
+
 def classify(rec):
-    """Add topic/genre scores and tier to a record dict. Returns tier or None."""
+    """Add topic/genre evidence and tier to a record dict. Returns tier or None.
+
+    Needs BOTH (a) a core topic signal and (b) a review/field-essay signal."""
     title = rec["title"]
     abstract = rec.get("abstract", "")
-    if DEFAULT_EXCLUDE_TITLE.search(title):
+    if DEFAULT_EXCLUDE_TITLE.search(title) or rec.get("doi", "").lower() in EXCLUDE_DOIS:
         return None
-    t_title, h_title = score(title, TOPIC_TERMS)
-    t_abs, h_abs = score(abstract, TOPIC_TERMS)
-    topic = t_title * 3 + t_abs
-    g_title, gh_title = score(title, GENRE_TERMS)
-    m = ABSTRACT_STRONG.search(abstract)
-    g_abs, gh_abs = (3, [m.group(0).lower()]) if m else (0, [])
-    genre = g_title * 2 + g_abs + (3 if rec.get("cluster") else 0)
-    if rec.get("cluster"):
-        gh_title = gh_title + ["themed cluster"]
     pages = page_count(rec.get("page"))
     rec["pages"] = pages
-    # Plain book reviews: short, no abstract, no explicit review-essay marker.
-    strong_genre = g_title >= 3 or g_abs >= 3 or (bool(rec.get("cluster")) and g_title >= 2)
-    if rec.get("type") == "book-review" and not strong_genre:
+    t_title, h_title = score(title, STRONG_TOPIC)
+    t_abs, h_abs = score(abstract, STRONG_TOPIC)
+    g_title, gh_title = score(title, GENRE_TERMS)
+    m = ABSTRACT_STRONG.search(abstract)
+    framing = bool(FRAMING_TITLE.match(title)) or ("introduction" in title.lower()[:14])
+    cluster = bool(rec.get("cluster"))
+
+    title_strong = g_title >= 3
+    title_weak = g_title >= 2
+    abs_genre = bool(m) or bool(FIELD_CUES.search(abstract) and ESSAY_CUES.search(abstract))
+    if rec["journal"] == "Osiris" and framing and rec.get("volume_topic"):
+        t_abs += rec["volume_topic"]
+    core = t_title >= 3 or t_abs >= 6 or (cluster and t_abs >= 3)
+
+    if rec.get("type") == "book-review" and not title_strong:
         return None
-    if pages is not None and pages <= 4 and not strong_genre:
+    if pages is not None and pages <= 4 and not title_strong:
         return None
-    # Osiris volume introductions: the volume theme stands in for the topic.
-    if rec["journal"] == "Osiris" and re.match(r"^introduction\b", title, re.I):
-        genre = max(genre, 6)
-        topic += rec.get("volume_topic", 0)
-    rec["topic_score"], rec["genre_score"] = topic, genre
+    if not core:
+        return None
+
+    evidence = list(gh_title) if (title_weak or title_strong) else []
+    if m:
+        evidence.append(m.group(0).lower())
+    elif abs_genre:
+        evidence.append("field+essay cues in abstract")
+    if framing:
+        evidence.append("introduction/afterword")
+    if cluster:
+        evidence.append("themed cluster")
+    rec["topic_score"] = t_title * 3 + t_abs
+    rec["genre_score"] = len(evidence)
     rec["topic_hits"] = sorted(set(h_title + h_abs))
-    rec["genre_hits"] = sorted(set(gh_title + gh_abs))
-    if topic >= 3 and genre >= 6 and strong_genre:
+    rec["genre_hits"] = evidence
+
+    if title_strong or ((title_weak or framing) and (abs_genre or cluster)) or (framing and t_title >= 3):
         return "high"
-    if topic >= 3 and genre >= 3:
+    if cluster and not (abs_genre or title_weak or framing):
+        return None
+    if title_weak or framing:
         return "medium"
-    if topic >= 1 and genre >= 6 and strong_genre:
-        return "medium"
-    if rec.get("cluster") and t_title >= 3:
-        return "medium"
-    if topic >= 6 and pages and pages >= 20 and genre >= 2:
+    if abs_genre and (t_title >= 3 or t_abs >= 9):
         return "medium"
     return None
 
@@ -145,7 +170,7 @@ def mark_clusters(recs):
     groups = {}
     for r in recs:
         pc = page_count(r.get("page"))
-        if r["journal"] == "Osiris" or pc is None or pc < 5 or score(r["title"], TOPIC_TERMS)[0] < 3:
+        if r["journal"] == "Osiris" or pc is None or pc < 5 or score(r["title"] + " " + r.get("abstract", ""), STRONG_TOPIC)[0] < 3:
             continue
         m = re.match(r"\d+", r.get("page") or "")
         r["_start"] = int(m.group(0)) if m else 0
@@ -304,8 +329,6 @@ def run(outdir, y0, y1, reuse=False):
         print(f"[{name}] {len(seen)} records", file=sys.stderr)
 
     outdir.mkdir(parents=True, exist_ok=True)
-    if not (reuse and cache.exists()):
-        cache.write_text(json.dumps(all_recs, ensure_ascii=False), encoding="utf-8")
 
     # Osiris: a volume whose other articles hit the topic often has a programmatic intro.
     vol_topic = {}
@@ -324,7 +347,7 @@ def run(outdir, y0, y1, reuse=False):
         pages = page_count(r["page"])
         if DEFAULT_EXCLUDE_TITLE.search(r["title"]) or (pages is not None and pages <= 4 and score(r["title"], GENRE_TERMS)[0] < 3):
             continue
-        if not r["abstract"]:
+        if not r["abstract"] and not r.get("oa_done"):
             cands.append(r)
     api_key = os.environ.get("OPENALEX_API_KEY")
     if api_key:
@@ -332,9 +355,11 @@ def run(outdir, y0, y1, reuse=False):
         got = oa_abstracts([r["doi"].lower() for r in cands if r["doi"]], api_key)
         for r in cands:
             r["abstract"] = got.get(r["doi"].lower(), "")
+            r["oa_done"] = True
     else:
         print("OPENALEX_API_KEY not set: skipping OpenAlex abstract back-fill (Crossref abstracts only).", file=sys.stderr)
 
+    cache.write_text(json.dumps(all_recs, ensure_ascii=False), encoding="utf-8")
     mark_clusters(all_recs)
     hits = []
     for r in all_recs:
@@ -347,15 +372,19 @@ def run(outdir, y0, y1, reuse=False):
 
 
 def selftest():
-    mk = lambda **k: {"journal": "Isis", "type": "journal-article", "page": "100-130", "abstract": "", **k}
+    mk = lambda **k: {"journal": "Isis", "type": "journal-article", "page": "100-130", "abstract": "", "doi": "x", **k}
+    essay = "This essay surveys the historiography of popular science and suggests new categories."
     cases = [
         (mk(title="Popular Science in Britain: A Historiographical Review"), {"high"}),
-        (mk(title="Rethinking the Vernacular in the History of Science", abstract="A review essay on recent scholarship."), {"high", "medium"}),
-        (mk(title="Artisans and Natural Knowledge: A Critical Survey"), {"high", "medium"}),
+        (mk(title="Rethinking the Vernacular in the History of Science", abstract=essay), {"high", "medium"}),
+        (mk(title="Vernacular Knowledge: A Historiographical Survey"), {"high"}),
+        (mk(title="Popular science and the Moon", abstract="This article examines the Moon lectures of 1850."), set()),
         (mk(title="The Chemistry of Dyes", page="1-30"), set()),
         (mk(title="Popular Astronomy", page="400-402", type="book-review"), set()),
         (mk(title="Front Matter", page="1-4"), set()),
         (mk(title="Introduction", journal="Osiris", volume_topic=3, abstract="popular science in the nineteenth century"), {"medium", "high"}),
+        (mk(title="Afterword: Science popularization and democracy", page="430-435"), {"high"}),
+        (mk(title="Trajectories in physics", doi="10.1177/007327531305100202", abstract=essay), set()),
     ]
     ok = True
     for rec, want in cases:
