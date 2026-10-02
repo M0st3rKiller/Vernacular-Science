@@ -24,3 +24,12 @@ python3 key_authors.py   # needs output/raw_records.json; writes output/key_auth
 Lists 40 scholars with their topics, how they frame vernacular/popular/everyday science
 (tagged `[data]` when taken from an abstract in the four journals, `[background]` when
 summarised from general knowledge and to be verified), and their articles/reviews found by name match.
+
+## Reading lists (MPIWG Dept. Daston, Science for the People)
+
+```
+python3 reading_lists.py   # reads data/reading_lists_sources.json + output/raw_records.json -> output/reading_lists.md
+```
+
+`data/reading_lists_sources.json` holds what was read from the two organisations' own websites
+(with the fetch date); relevance labels in the output are judgements from titles only.
